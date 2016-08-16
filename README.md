@@ -36,3 +36,5 @@ session := ...
 inj.Register(session)
 ```
 
+### License
+Apache 2
