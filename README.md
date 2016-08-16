@@ -4,6 +4,7 @@ Pluggable service injector
 
 [![GoDoc](https://godoc.org/github.com/abiosoft/injekt?status.svg)](https://godoc.org/github.com/abiosoft/injekt)
 [![Build Status](https://travis-ci.org/abiosoft/injekt.svg?branch=master)](https://travis-ci.org/abiosoft/injekt)
+[![Go Report Card](https://goreportcard.com/badge/github.com/abiosoft/injekt)](https://goreportcard.com/report/github.com/abiosoft/injekt)
 
 
 Injekt is a pluggable service injector for any project or framework. 
