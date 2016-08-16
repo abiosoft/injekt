@@ -11,12 +11,13 @@ type Injector struct {
 	funcType interface{}
 }
 
-// New creates a new injector. funcType is the underlying function
-// definition to wrap to. funcType can be empty/nil value of the
-// type.
+// New creates a new Injector. funcType is value of the required function
+// type to wrap to.
+//  // http.HandlerFunc as required function.
 //  var f http.HandlerFunc
 //  injekt.New(f)
 //
+//  // func(c *mypackge.Context) as required function.
 //  injekt.New(func(c *mypackge.Context){})
 func New(funcType interface{}) *Injector {
 	return &Injector{
@@ -25,15 +26,17 @@ func New(funcType interface{}) *Injector {
 }
 
 // Wrap wraps f and return a function compatible with
-// funcType used with New. f must be a function, otherwise a panic
+// the required function. f must be a function, otherwise a panic
 // occurs.
 //
-// If f returns values, f and funcType must have same return types
-// to get desired behaviour.
-//  // http.HandlerFunc underlying function.
+// If f returns values, f and the required function must have same return types
+// to get desired behaviour. If any of the services passed as
+// parameters to f is not registered, empty value of the type will be
+// passed.
+//  // http.HandlerFunc required function.
 //  http.HandleFunc("/", inj.Wrap(myFunc).(http.HandlerFunc))
 //
-//  // custom underlying function and router.
+//  // func(c *mypackage.Context) required function and custom router.
 //  myRouter.Handle("/", inj.Wrap(myFunc).(func(c *mypackage.Context)))
 func (inj Injector) Wrap(f interface{}) interface{} {
 	return inj.wrapTo(f, inj.funcType)
